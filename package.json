@@ -1,7 +1,7 @@
 {
-  "name": "docker-nestjs-ddd-postgresql",
+  "name": "docker-nestjs-ddd-graphql-mongodb-auth",
   "version": "1.0.0",
-  "description": "A simple API using Docker, NestJS, Typescript, Redis and PostgreSQL (with Domain Driven Design)",
+  "description": "A simple API using Docker, NestJS, GraphQL, Typescript, Redis and MongoDB (with Domain Driven Design)",
   "main": "index.ts",
   "_moduleAliases": {
     "container": "./build/src/container",
@@ -42,7 +42,7 @@
     "nodejs",
     "nestjs",
     "typescript",
-    "postgresql",
+    "mongodb",
     "ddd"
   ],
   "dependencies": {

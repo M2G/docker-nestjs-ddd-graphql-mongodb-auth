@@ -29,7 +29,6 @@ module.exports = {
     extraFileExtensions: [".scss"]
   },
   plugins: ["@typescript-eslint", "jest", "prettier"],
-  ignorePatterns: ['.eslintrc.js'],
   rules: {
     "no-return-assign": 0,
     "no-restricted-syntax": 0,
@@ -83,9 +82,7 @@ module.exports = {
     "@typescript-eslint/no-unsafe-assignment": 1,
     "@typescript-eslint/explicit-module-boundary-types": 0,
     "@typescript-eslint/no-unsafe-member-access": 1,
-    "@typescript-eslint/no-unsafe-call": 1,
-
-    '@typescript-eslint/interface-name-prefix': 0,
+    "@typescript-eslint/no-unsafe-call": 1
   },
   settings: {
     "html/html-extensions": [".html"],
@@ -101,7 +98,9 @@ module.exports = {
     },
   },
   env: {
+    browser: true,
     jest: true,
+    jasmine: true,
     node: true
   }
 };
