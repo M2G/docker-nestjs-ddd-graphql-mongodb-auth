@@ -21,9 +21,9 @@ services:
     volumes:
       - .:/app
       - /app/node_modules/bcrypt
-    command: npm run watch
+    command: npm run start:dev
     depends_on:
-      - mongodb
+      - db
       - redis
     stdin_open: true
     tty: true
@@ -36,7 +36,7 @@ services:
     volumes:
       - ./redis-data:/data
 
-  mongodb:
+  db:
     image: mongo:5.0.5
     container_name: mongodb
     ports:
@@ -48,12 +48,12 @@ services:
     env_file:
       - .env
     restart: always
-    command: mongod --auth
+    command: mongod --auth --setParameter diagnosticDataCollectionEnabled=false
     volumes:
       #add persistent storage
-      - db-data:/data/db
+      - db:/data/db
       #add path to startup script
       - ./entrypoint/:/docker-entrypoint-initdb.d/
 
 volumes:
-  db-data:
+  db:
