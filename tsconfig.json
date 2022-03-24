@@ -35,12 +35,11 @@
     "rootDirs": ["src"],
     "baseUrl": "src",
     "paths": {
-      "container": ["./container"],
-      "app/*": ["./app/*"],
-      "core": ["./core"],
-      "domain/*": ["./domain/*"],
-      "infra/*": ["./infra/*"],
-      "interfaces/*": ["./interfaces/*"]
+      "applications/*": ["**/applications/*"],
+      "controller/*": ["**/controller/*"],
+      "domain/*": ["**/domain/*"],
+      "interfaces/*": ["**/interfaces/*"],
+      "services/*": ["**/services/*"]
     }
   },
   "include": ["src/**/*"],
