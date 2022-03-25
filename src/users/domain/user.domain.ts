@@ -1,15 +1,13 @@
+/*eslint-disable*/
 import { IsString, IsEmail } from 'class-validator';
 
 export class UserDomain {
+  @IsString()
+  readonly fullName: string | undefined;
 
   @IsString()
-  readonly fullName: string;
-
-
-  @IsString()
-  readonly password: string;
-
+  readonly password: string | undefined;
 
   @IsEmail()
-  readonly email: string;
+  readonly email: string | undefined;
 }

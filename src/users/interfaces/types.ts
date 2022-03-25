@@ -4,13 +4,13 @@ export const USER_TYPES = {
     IGetUserService: 'IGetUserService',
     IGetAllUserService: 'IGetAllUserService',
     IEditUserService: 'IEditUserService',
-    IDeleteUserService: 'IDeleteUserService'
+    IDeleteUserService: 'IDeleteUserService',
   },
   applications: {
     ICreateUserApplication: 'ICreateUserApplication',
     IGetUserApplication: 'IGetUserApplication',
     IGetAllUserApplication: 'IGetAllUserApplication',
     IEditUserApplication: 'IEditUserApplication',
-    IDeleteUserApplication: 'IDeleteUserApplication'
+    IDeleteUserApplication: 'IDeleteUserApplication',
   },
 };
