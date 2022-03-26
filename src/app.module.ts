@@ -1,21 +1,10 @@
 import { Module } from '@nestjs/common';
-// import { TypeOrmModule } from '@nestjs/typeorm';
-// import { UsersModule } from './users/users.module';
-// import { ORMConfig } from './ormconfig';
-import { GraphQLModule } from '@nestjs/graphql';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { GraphqlService } from './config/graphql/graphql.service';
-import { TypeormService } from './config/typeorm/typeorm.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
-  imports: [
-    // UsersModule, TypeOrmModule.forRoot(ORMConfig),
-    GraphQLModule.forRootAsync({
-      useClass: GraphqlService,
-    }),
-    TypeOrmModule.forRootAsync({
-      useClass: TypeormService,
-    }),
-  ],
+  imports: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

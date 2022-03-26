@@ -26,11 +26,11 @@ services:
       - db
       - redis
     stdin_open: true
-    tty: true
+#    tty: true
 
   redis:
     image: redis:alpine
-    container_name: cache
+    container_name: cache_redis
     ports:
       - ${HOST_PORT_REDIS}:${CONTAINER_PORT_REDIS}
     volumes:
@@ -38,7 +38,7 @@ services:
 
   db:
     image: mongo:5.0.5
-    container_name: mongodb
+    container_name: mongo_db
     ports:
       - ${HOST_PORT}:${CONTAINER_PORT}
     environment:
