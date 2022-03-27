@@ -1,6 +1,3 @@
-// @ts-ignore
-function test () {
-  return true;
-}
+import bootstrap from './main';
 
-test();
+bootstrap();

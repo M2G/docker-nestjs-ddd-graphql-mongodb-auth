@@ -4,12 +4,10 @@
   "description": "A simple API using Docker, NestJS, GraphQL, Typescript, Redis and MongoDB (with Domain Driven Design)",
   "main": "index.ts",
   "_moduleAliases": {
-    "container": "./build/src/container",
-    "app": "./build/src/app",
-    "core": "./build/src/core",
-    "domain": "./build/src/domain",
-    "infra": "./build/src/infra",
-    "interfaces": "./build/src/interfaces"
+    "application": "./build/application",
+    "domain": "./build/domain",
+    "infrastructure": "./build/infrastructure",
+    "interfaces": "./build/interfaces"
   },
   "scripts": {
     "prebuild": "rimraf dist",
@@ -49,6 +47,7 @@
     "ddd"
   ],
   "dependencies": {
+    "@nestjs/apollo": "^10.0.8",
     "@nestjs/common": "^8.1.1",
     "@nestjs/core": "^8.1.1",
     "@nestjs/graphql": "^10.0.8",
@@ -56,6 +55,7 @@
     "@nestjs/platform-express": "^8.1.1",
     "@nestjs/typeorm": "^8.0.3",
     "@types/bcrypt": "^5.0.0",
+    "apollo-server-core": "^3.6.6",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
@@ -65,6 +65,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.4.0",
+    "type-graphql": "^1.2.0-rc.1",
     "typeorm": "^0.3.3"
   },
   "devDependencies": {
