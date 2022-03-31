@@ -62,6 +62,7 @@ module.exports = {
     "lines-between-class-members": 0,
     "multiline-comment-style": 0,
 
+    "@typescript-eslint/no-parameter-propertie": 1,
     "@typescript-eslint/prefer-readonly-parameter-types": 1,
     "@typescript-eslint/no-extraneous-class": 1,
     '@typescript-eslint/interface-name-prefix': 0,

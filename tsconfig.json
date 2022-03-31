@@ -35,11 +35,9 @@
     "rootDirs": ["src"],
     "baseUrl": "src",
     "paths": {
-      "applications/*": ["**/applications/*"],
-      "controller/*": ["**/controller/*"],
-      "domain/*": ["**/domain/*"],
-      "interfaces/*": ["**/interfaces/*"],
-      "services/*": ["**/services/*"]
+      "application/*": ["./application"],
+      "domain/*": ["./domain/*"],
+      "infrastructure/*": ["./infrastructure/*"],
     }
   },
   "include": ["src/**/*"],

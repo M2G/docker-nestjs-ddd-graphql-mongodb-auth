@@ -1,21 +1,27 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
-import { MongooseModule } from '@nestjs/mongoose';
-import { DomainModule } from './domain/domain.module';
-import { InfrastructureModule } from './infrastructure/infrastructure.module';
-import { InterfacesModule } from './interfaces/interfaces.module';
-import { ApplicationModule } from './application/application.module';
+import { ApolloDriver } from '@nestjs/apollo';
+import { UsersModule } from './modules/users/users.module';
+import { getORMConfig } from './ormconfig';
+import { configuration } from './config/configuration';
+import { AuthModule } from './modules/auth/auth.module';
+// import { MongoConnectionOptions } from 'typeorm/driver/mongodb/MongoConnectionOptions';
 
 @Module({
-  imports: [
-    GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gql',
-    }),
-    MongooseModule.forRoot('mongodb://root_user:root_user_pw@db:27019/root_db'),
-    DomainModule,
-    InfrastructureModule,
-    InterfacesModule,
-    ApplicationModule,
-  ],
+    imports: [
+        ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+        AuthModule,
+        GraphQLModule.forRoot({
+          driver: ApolloDriver,
+          resolverValidationOptions: {
+            requireResolversForResolveType: false,
+          },
+            typePaths: ['./**/*.graphql'],
+        }),
+        UsersModule,
+      TypeOrmModule.forRoot(getORMConfig()),
+    ],
 })
 export class AppModule {}
