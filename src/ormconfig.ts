@@ -17,6 +17,5 @@ export const getORMConfig = () => {
     url: `mongodb://${username}:${password}@db:${dbHost}/${dbName}`,
     useNewUrlParser: true,
     useUnifiedTopology: true,
-
   };
 };

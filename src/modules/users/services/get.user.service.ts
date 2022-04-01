@@ -2,9 +2,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../domain/user.entity';
-import type { UserDomain } from '../domain/user.domain';
-import type { GetUserService } from '../interfaces/services/get.user.service.interface';
+import { User } from 'modules/users/domain/user.entity';
+import type { UserDomain } from 'modules/users/domain/user.domain';
+import type { GetUserService } from 'modules/users/interfaces/services/get.user.service.interface';
 
 @Injectable()
 export class GetUserServiceImpl implements GetUserService {
@@ -13,10 +13,12 @@ export class GetUserServiceImpl implements GetUserService {
     ) {}
 
     async getById(id: string): Promise<UserDomain | undefined> {
-        return this.usersRepository.findOne({ userId: id });
+      // @ts-ignore
+        return this.usersRepository.findOne({ _id: id }) as any;
     }
 
     async getByEmail(email: string): Promise<UserDomain | undefined> {
-        return this.usersRepository.findOne({ email });
+        // @ts-ignore
+      return this.usersRepository.findOne({ email }) as any;
     }
 }

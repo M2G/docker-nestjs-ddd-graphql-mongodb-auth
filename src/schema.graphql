@@ -1,20 +1,26 @@
 input UserInput {
- fullName: String!
- password: String!
- email: String!
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String!
+  created_at: String!
+  modified_at: String
 }
 
 type User {
- userId: ID!
- fullName: String!
- password: String!
- email: String!
+  _id: ID!
+  first_name: String!
+  last_name: String!
+  email: String!
+  password: String!
+  created_at: String!
+  modified_at: String!
 }
 
 type Query {
-    userById(id: ID!): User,
+  userById(id: ID!): User
 }
 
 type Mutation {
-    createUser(user: UserInput): User!
+  createUser(user: UserInput): User!
 }

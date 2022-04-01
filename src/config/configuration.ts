@@ -29,7 +29,7 @@ export const configuration = (): Configuration => {
                 DEFAULT_SERVER_PORT,
         },
         databaseConfig: {
-            dbHost: process.env.HOST_PORT as string,
+            dbHost: process.env.CONTAINER_PORT as string,
             dbName: process.env.MONGO_INITDB_DATABASE as string,
             username: process.env.MONGO_INITDB_ROOT_USERNAME as string,
             password: process.env.MONGO_INITDB_ROOT_PASSWORD as string,

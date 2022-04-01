@@ -3,11 +3,11 @@ import {
  Resolver, Query, Args, ID, Mutation,
 } from '@nestjs/graphql';
 import { Inject, UsePipes } from '@nestjs/common';
-import { ValidationPipe } from 'common/validation.pipe';
-import { UserDomain } from '../domain/user.domain';
-import { TYPES } from '../interfaces/types';
-import { CreateUserApplication } from '../interfaces/applications/create.user.application.interface';
-import { GetUserApplication } from '../interfaces/applications/get.user.application.interface';
+import { ValidationPipe } from 'src/common/validation.pipe';
+import { UserDomain } from 'src/modules/users/domain/user.domain';
+import { TYPES } from 'src/modules/users/interfaces/types';
+import { CreateUserApplication } from 'src/modules/users/interfaces/applications/create.user.application.interface';
+import { GetUserApplication } from 'src/modules/users/interfaces/applications/get.user.application.interface';
 
 @Resolver('User')
 export class UserResolver {

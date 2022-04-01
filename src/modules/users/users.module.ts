@@ -7,36 +7,36 @@ import { CreateUserApplicationImpl } from './applications/create.user.applicatio
 import { TYPES } from './interfaces/types';
 import { GetUserApplicationImpl } from './applications/get.user.application';
 import { GetUserServiceImpl } from './services/get.user.service';
-import { UserResolver } from './resolver/user.resolver';
+import { UserResolver } from './interfaces/graphql/resolver/user.resolver';
 
 const createUserApp = {
-    provide: TYPES.applications.CreateUserApplication,
-    useClass: CreateUserApplicationImpl,
+  provide: TYPES.applications.CreateUserApplication,
+  useClass: CreateUserApplicationImpl,
 };
 const getUserApp = {
-    provide: TYPES.applications.GetUserApplication,
-    useClass: GetUserApplicationImpl,
+  provide: TYPES.applications.GetUserApplication,
+  useClass: GetUserApplicationImpl,
 };
 
 const createUserService = {
-    provide: TYPES.services.CreateUserService,
-    useClass: CreateUserServiceImpl,
+  provide: TYPES.services.CreateUserService,
+  useClass: CreateUserServiceImpl,
 };
 const getUserService = {
-    provide: TYPES.services.GetUserService,
-    useClass: GetUserServiceImpl,
+  provide: TYPES.services.GetUserService,
+  useClass: GetUserServiceImpl,
 };
 
 @Module({
-    imports: [TypeOrmModule.forFeature([User])],
-    controllers: [UsersController],
-    providers: [
-        createUserApp,
-        getUserApp,
-        createUserService,
-        getUserService,
-        UserResolver,
-    ],
-    exports: [UserResolver, getUserService],
+  controllers: [UsersController],
+  exports: [UserResolver, getUserService],
+  imports: [TypeOrmModule.forFeature([User])],
+  providers: [
+    createUserApp,
+    getUserApp,
+    createUserService,
+    getUserService,
+    UserResolver,
+  ],
 })
 export class UsersModule {}

@@ -1,10 +1,10 @@
 export const TYPES = {
-    services: {
-        CreateUserService: 'CreateUserService',
-        GetUserService: 'GetUserService',
-    },
-    applications: {
-        CreateUserApplication: 'CreateUserApplication',
-        GetUserApplication: 'GetUserApplication',
-    },
+  applications: {
+    CreateUserApplication: 'CreateUserApplication',
+    GetUserApplication: 'GetUserApplication',
+  },
+  services: {
+    CreateUserService: 'CreateUserService',
+    GetUserService: 'GetUserService',
+  },
 };
