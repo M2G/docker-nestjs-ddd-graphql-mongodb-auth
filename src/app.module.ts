@@ -1,28 +1,43 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
- import { TypeOrmModule } from '@nestjs/typeorm';
-// import { MongooseModule } from '@nestjs/mongoose';
+import { TypeOrmModule } from '@nestjs/typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
+// import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver } from '@nestjs/apollo';
 import { UsersModule } from './modules/users/users.module';
-import { getORMConfig } from './ormconfig';
+// import { getORMConfig } from './ormconfig';
+// eslint-disable-next-line import/namespace
+import { GraphqlService } from './config/graphql/graphql.service';
+import { TypeormService } from './config/typeorm/typeorm.service';
 import { configuration } from './config/configuration';
-import { AuthModule } from './modules/auth/auth.module';
-// import { MongoConnectionOptions } from 'typeorm/driver/mongodb/MongoConnectionOptions';
+// import { AuthModule } from './modules/auth/auth.module';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+  controllers: [AppController],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
+    GraphQLModule.forRootAsync({
+      driver: ApolloDriver,
+      useClass: GraphqlService,
+    }),
+    TypeOrmModule.forRootAsync({
+      useClass: TypeormService,
+    }),
+
+    /* ConfigModule.forRoot({ isGlobal: true, load: [configuration] }),
         AuthModule,
         GraphQLModule.forRoot({
           driver: ApolloDriver,
           resolverValidationOptions: {
             requireResolversForResolveType: false,
-          },
-            typePaths: ['./**/*.graphql'],
-        }),
-        UsersModule,
-      TypeOrmModule.forRoot(getORMConfig()),
-    ],
+          }, */
+    // typePaths: ['./**/*.graphql'],
+    // }),
+    UsersModule,
+    // TypeOrmModule.forRoot(getORMConfig()),
+  ],
+  providers: [AppService],
 })
 export class AppModule {}

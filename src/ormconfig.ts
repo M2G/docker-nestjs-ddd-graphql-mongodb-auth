@@ -1,16 +1,17 @@
+import { getMetadataArgsStorage } from 'typeorm';
+import type { MongoConnectionOptions } from 'typeorm/driver/mongodb/MongoConnectionOptions';
 import { configuration } from './config/configuration';
 
-export const getORMConfig = () => {
-    const {
-        dbHost,
-        username,
-        password,
-        dbName,
-    } = configuration().databaseConfig;
+export const getORMConfig = (): MongoConnectionOptions => {
+  const {
+ dbHost, username, password, dbName,
+} = configuration().databaseConfig;
 
   return {
-    autoLoadEntities: true,
-    entities: ['dist/**/*.entity{.ts,.js}'],
+    entities: getMetadataArgsStorage().tables.map(
+      (tbl) => tbl.target,
+    ),
+    // entities: ['build/**/*.entity{.ts,.js}'],
     logging: true,
     synchronize: true,
     type: 'mongodb',

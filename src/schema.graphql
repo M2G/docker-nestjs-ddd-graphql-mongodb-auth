@@ -14,11 +14,11 @@ type User {
   email: String!
   password: String!
   created_at: String!
-  modified_at: String!
+  modified_at: String
 }
 
 type Query {
-  userById(id: ID!): User
+  userById(_id: ID!): User
 }
 
 type Mutation {

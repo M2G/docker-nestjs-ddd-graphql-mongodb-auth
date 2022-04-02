@@ -35,6 +35,8 @@ export class UsersController {
   async findOne(
     @Param('id', new ParseUUIDPipe()) id: string,
   ): Promise<UserDomain | undefined> {
+    console.log('findOne findOne', id);
+
     const user = await this.getUserApp.getById(id);
     return user;
   }
