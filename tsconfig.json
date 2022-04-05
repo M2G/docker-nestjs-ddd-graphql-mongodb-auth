@@ -32,12 +32,15 @@
       "ES2020",
       "ESNext"
     ],
-    "rootDirs": ["src"],
+    "rootDirs": [
+      "src"
+    ],
     "baseUrl": "src",
     "paths": {
-      "application/*": ["./application"],
-      "domain/*": ["./domain/*"],
-      "infrastructure/*": ["./infrastructure/*"],
+      "common/*": ["./common/*"],
+      "config/*": ["./config/*"],
+      "modules/*": ["./modules/*"],
+      "database/*": ["./database/*"]
     }
   },
   "include": ["src/**/*"],
