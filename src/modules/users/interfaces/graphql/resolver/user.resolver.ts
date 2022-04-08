@@ -2,7 +2,7 @@
 import {
  Args, Mutation, Resolver, Query,
 } from '@nestjs/graphql';
-import { UserService } from "modules/users/services/user.service";
+import { UserService } from "modules/users/application/services/impl/user.service";
 import { CreateUserInput } from 'modules/users/interfaces/graphql/dto/user-add.input';
 import { User } from 'modules/users/infrastructure/mongoose/user.schema';
 

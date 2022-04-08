@@ -3,15 +3,16 @@ import type { FilterQuery, Query } from 'mongoose';
 import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import { User } from 'modules/users/infrastructure/mongoose/user.schema';
+import { IUserService } from '../users';
 
 @Injectable()
-export class UserService {
+export class UserService implements IUserService<any> {
   constructor(
     @Inject(User)
     private readonly userModel: Model<User>,
   ) {}
 
-  async create(input: Query<User>): Promise<User> {
+  async create(input: Query<User, any, any, any>): Promise<User> {
     return this.userModel.create(input);
   }
 

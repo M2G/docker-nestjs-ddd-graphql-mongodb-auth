@@ -12,7 +12,7 @@ import { userProviders } from './modules/users/user.providers';
 import { databaseProviders } from './database/database.providers';
 import { DatabaseModule } from './database/database.module';
 import { UserResolver } from "./modules/users/interfaces/graphql/resolver/user.resolver";
-import { UserService } from "./modules/users/services/user.service";
+import { UserService } from "./modules/users/application/services/impl/user.service";
 
 @Module({
   controllers: [AppController],

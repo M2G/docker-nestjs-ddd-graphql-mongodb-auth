@@ -2,7 +2,7 @@
 import { Module } from '@nestjs/common';
 import { DatabaseModule } from 'database/database.module';
 import { UserResolver } from './interfaces/graphql/resolver/user.resolver';
-import { UserService } from './services/user.service';
+import { UserService } from './application/services/impl/user.service';
 import { userProviders } from './user.providers';
 
 @Module({
