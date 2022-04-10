@@ -1,14 +1,19 @@
-// src/user/user.resolver.ts
+/*eslint-disable*/
+import { Inject } from '@nestjs/common';
 import {
  Args, Mutation, Resolver, Query,
 } from '@nestjs/graphql';
 import { UserService } from "modules/users/application/services/impl/user.service";
 import { CreateUserInput } from 'modules/users/interfaces/graphql/dto/user-add.input';
 import { User } from 'modules/users/infrastructure/mongoose/user.schema';
+import { IUserService } from 'modules/users/application/services/users';
 
 @Resolver(() => User)
 export class UserResolver {
-  constructor(private readonly userService: UserService) {}
+  //constructor(private readonly userService: UserService) {}
+  constructor(
+    @Inject(UserService) private readonly userService: IUserService<any>,
+  ) {}
 
    @Mutation(() => User)
   async createUser(@Args('input') input: CreateUserInput) {
@@ -17,6 +22,7 @@ export class UserResolver {
 
   @Query(() => [User])
   async users() {
+    console.log('users')
     return this.userService.find();
   }
 }

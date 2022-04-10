@@ -1,5 +1,5 @@
 import type { Connection } from 'mongoose';
-import { User, UserSchema} from 'modules/users/infrastructure/mongoose/user.schema';
+import { User, UserSchema } from 'modules/users/infrastructure/mongoose/user.schema';
 
 export const userProviders = [
   {
