@@ -1,25 +1,26 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Schema as MongooseSchema } from 'mongoose';
+import { Prop, Schema } from '@nestjs/mongoose';
 
-@Entity()
+@Schema()
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  _id!: number;
+  @Prop({ type: String })
+  _id!: MongooseSchema.Types.ObjectId;
 
-  @Column()
+  @Prop({ type: String })
   first_name!: string;
 
-  @Column()
+  @Prop({ type: String })
   last_name!: string;
 
-  @Column()
-  email!: boolean;
+  @Prop({ type: String })
+  email!: string;
 
-  @Column()
-  password!: boolean;
+  @Prop({ type: String })
+  password!: string;
 
-  @Column()
-  created_at!: boolean;
+  @Prop({ type: String })
+  created_at!: string;
 
-  @Column()
-  modified_at!: boolean;
+  @Prop({ type: String })
+  modified_at!: string;
 }

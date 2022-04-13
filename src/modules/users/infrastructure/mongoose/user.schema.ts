@@ -1,6 +1,7 @@
 /*eslint-disable*/
 // src/user/user.schema.ts
 import { Field, ObjectType } from '@nestjs/graphql';
+// import { IsString, IsEmail } from 'class-validator';
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 
