@@ -1,4 +1,4 @@
-// import type { FilterQuery, Query } from 'mongoose';
+import type { FilterQuery, Query } from 'mongoose';
 // import { Model } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import type { User } from 'modules/users/infrastructure/mongoose/user.schema';
@@ -23,13 +23,21 @@ export class UserService implements IUserService<any> {
     private readonly userModel: Model<User>,
   ) {} */
 
-  /* async create(input: Query<User, any, any, any>): Promise<User> {
-    return this.userRepository.create(input);
+  async update(id: Query<User>, input: Query<User>): Promise<User> {
+    return this.userRepository.update(id, input);
   }
 
-  async findOne(query: FilterQuery<User>): Promise<User> {
-    return this.userRepository.findOne(query).lean();
-  } */
+  async delete(id: Query<User>): Promise<User> {
+    return this.userRepository.delete(id);
+  }
+
+  async create(input: Query<User>): Promise<User> {
+    return this.userRepository.save(input);
+  }
+
+  async findOne(query: FilterQuery<User>): Promise<User[]> {
+    return this.userRepository.findOne(query);
+  }
 
   async find(): Promise<User[]> {
     console.log('find');

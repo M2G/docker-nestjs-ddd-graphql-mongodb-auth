@@ -7,10 +7,7 @@ import { DomainModule } from 'modules/users/domain/domain.module';
 import { UserAssembler } from './assembler/user.assembler';
 
 @Module({
-  exports: [UserService,
-UserAssembler,
-UserMapperService,
-UserRepositoryImpl],
+  exports: [UserService, UserAssembler, UserMapperService, UserRepositoryImpl],
   imports: [DomainModule, InfrastructureModule],
   providers: [
     UserService,

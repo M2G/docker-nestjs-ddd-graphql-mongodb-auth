@@ -14,11 +14,15 @@ import type { CreateUserInput } from 'modules/users/interfaces/graphql/dto/user-
 
 export interface IUserService<T extends Document> {
 
-  findOneById: (userDetailQuery: UserDetailQueryArg) => Promise<UserDto>;
+  findOne: (userDetailQuery: UserDetailQueryArg) => Promise<UserDto>;
 
   add: (user: CreateUserInput) => Promise<UserDto>;
 
   create: (user: CreateUserInput) => Promise<UserDto>;
 
   find: () => Promise<UserDto>;
+
+  update: () => any;
+  delete: () => any;
+  save: () => any;
 }

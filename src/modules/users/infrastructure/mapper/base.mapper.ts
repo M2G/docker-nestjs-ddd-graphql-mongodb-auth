@@ -14,7 +14,7 @@ export abstract class BaseMapperService extends RepositoryBase<User> {
     return this._repo.findOne(id);
   }
 
-  async findAll(options?: any): Promise<User[]> {
+  async find(options?: any): Promise<User[]> {
     return this._repo.find(options);
   }
 
@@ -22,7 +22,7 @@ export abstract class BaseMapperService extends RepositoryBase<User> {
     return this._repo.findByIdAndDelete(id);
   }
 
-  async add(t: User): Promise<User> {
+  async create(t: User): Promise<User> {
     return this._repo.create(t);
   }
 
