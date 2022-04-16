@@ -19,18 +19,18 @@ export class UserRepositoryImpl implements UserRepository {
     return user;
   }
 
-    async find(id: number): Promise<User[]> {
-      console.log('UserRepositoryImpl', id);
+    async find(options?: any): Promise<User[]> {
+      console.log('UserRepositoryImpl');
 
-        const userEntity = await this.userMapper.findAll(id);
+        const userEntity = await this.userMapper.find(options);
 
       console.log('UserRepositoryImpl userEntity ', userEntity);
 
-       // const user = UserConverter.toDomain(userEntity);
+      const user = userEntity?.map((user) => UserConverter.toDomain(user)._doc);
 
-      console.log('user user user ', userEntity);
+      console.log('user user user ', user);
 
-        return userEntity;
+        return user;
     }
 
   async update() {}

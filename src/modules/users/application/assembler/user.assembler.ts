@@ -17,7 +17,7 @@ export class UserAssembler implements BaseAssembler<UserEntity, User, UserDto> {
   */
   async applyDomainToDto(user: User): Promise<UserDto> {
     let userDto: any = new UserDto();
-    userDto = { ...userDto, ...user};
+    userDto = { ...userDto, ...user };
     return userDto;
   }
 
@@ -27,7 +27,6 @@ export class UserAssembler implements BaseAssembler<UserEntity, User, UserDto> {
     }
     let userDto: any = new UserDto();
     userDto = { ...userDto, ...userEntity };
-    console.log('userDto', userDto);
     return userDto;
   }
 }

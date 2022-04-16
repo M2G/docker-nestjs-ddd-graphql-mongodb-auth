@@ -15,6 +15,7 @@ export abstract class BaseMapperService extends RepositoryBase<User> {
   }
 
   async find(options?: any): Promise<User[]> {
+    console.log('--------------------- find')
     return this._repo.find(options);
   }
 

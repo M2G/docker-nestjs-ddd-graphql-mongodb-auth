@@ -2,8 +2,12 @@
 // src/user/user.schema.ts
 import { Field, ObjectType } from '@nestjs/graphql';
 // import { IsString, IsEmail } from 'class-validator';
-import * as mongoose from 'mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
+
+const emailMatch = [
+  /([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i,
+  'No email found ({VALUE})',
+];
 
 /*
   _id?: Types.ObjectId | string;
@@ -19,15 +23,46 @@ import { Document } from 'mongoose';
   token?: string;
  */
 
-export const UserSchema = new mongoose.Schema({
-  _id: String,
-  email: String,
-  username: String,
-  first_name: String,
-  last_name: String,
-  password: String,
-  created_at: Date,
-  modified_at: Date,
+export const UserSchema = new Schema({
+  email: {
+    lowercase: true,
+    match: emailMatch,
+    maxlength: 255,
+    minlength: 5,
+    trim: true,
+    type: String,
+    unique: true,
+  },
+  first_name: {
+    maxlength: 100,
+    minlength: 2,
+    type: String,
+  },
+  last_name: {
+    maxlength: 100,
+    minlength: 2,
+    type: String,
+  },
+  username: {
+    maxlength: 100,
+    minlength: 2,
+    lowercase: true,
+    trim: true,
+    type: String,
+  },
+  password: {
+    maxlength: 100,
+    minlength: 5,
+    required: true,
+    type: String,
+  },
+  created_at: {
+    type: Date,
+    default: new Date().toISOString(),
+  },
+  modified_at: {
+    type: Date,
+  }
 });
 
 @ObjectType()

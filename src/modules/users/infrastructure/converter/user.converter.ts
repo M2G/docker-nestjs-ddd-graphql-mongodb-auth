@@ -11,6 +11,8 @@ export class UserConverter {
   static toDomain(userEntity: UserEntity): User {
     let user: any = new User();
     user = { ...user, ...userEntity };
+    console.log('toDomain', user);
+
     return user;
   }
 }
