@@ -6,7 +6,7 @@ import type {
   Types,
 } from "mongoose";
 
-interface IRead<T extends Document> {
+export interface IRead<T extends Document> {
   findById: (id?: Types.ObjectId, callback?: (error: any, result?: Model<T>) => void) => void;
   findOne: ((conditions: any, projection: any,
              callback?: (err: any, res: Model<T> | null) => void) => Query<T | null, T>)
@@ -23,7 +23,7 @@ interface IRead<T extends Document> {
         callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>);
 }
 
-interface IWrite<T extends Document> {
+export interface IWrite<T extends Document> {
   create: ((item?: Query<any[], any, {}, any>,
             callback?: (error: any, result?: T[]) => void) => Query<T[], T>);
   findByIdAndUpdate: (_id?: Types.ObjectId, item?: UpdateQuery<T>, options?: {
@@ -41,8 +41,6 @@ class RepositoryBase<T extends Document> implements IRead<T>, IWrite<T> {
 
   public constructor(schemaModel: Model<Document>) {
     this._model = schemaModel;
-
-    console.log('schemaModel', schemaModel);
   }
 
   create(item: T, callback: (error: any, result: T) => void) {
@@ -54,11 +52,11 @@ class RepositoryBase<T extends Document> implements IRead<T>, IWrite<T> {
   }
 
   findOne(cond?: Object, callback?: (err: any, res: T) => void): Query<T> {
-    return this._model.findOne(cond, callback);
+    return this._model.findOne(cond, callback).lean();
   }
 
   find(cond?: Object, fields?: Object, options?: Object, callback?: (err: any, res: T[]) => void): Query<T[]> {
-    return this._model.find(cond, options, callback);
+    return this._model.find(cond, options, callback).lean();
   }
 
   update(_id: Types.ObjectId, item: T, callback: (error: any, result: any) => void) {
@@ -69,5 +67,3 @@ class RepositoryBase<T extends Document> implements IRead<T>, IWrite<T> {
     return this._model.findByIdAndUpdate({ _id }, item, callback);
   }
 }
-
-export default RepositoryBase;

@@ -1,3 +1,4 @@
-import { UserRepository } from './user.repository';
+import { IRead, IWrite } from './base.repository';
+import UserRepository from './user.repository';
 
-export { UserRepository };
+export { IRead, IWrite, UserRepository };

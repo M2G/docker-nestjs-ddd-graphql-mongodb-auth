@@ -11,7 +11,7 @@ export class UserRepositoryImpl implements UserRepository {
   private readonly userMapper!: UserMapperService;
 
   async findOne(id: number): Promise<User> {
-    const userEntity: UserEntity = await this.userMapper.findOne(id);
+    const userEntity: User = await this.userMapper.findOne(id);
     return UserConverter.toDomain(userEntity);
   }
 
@@ -26,9 +26,11 @@ export class UserRepositoryImpl implements UserRepository {
 
   async save(user: User): Promise<User> {
     const userEntity = UserConverter.toEntity(user);
-    const inserted = await this.userMapper.add(userEntity);
-
+    console.log('userEntity userEntity', userEntity)
+    const inserted = await this.userMapper.create(userEntity);
+    console.log('inserted inserted', inserted)
     const res = UserConverter.toDomain(inserted);
+    console.log('inserted res', inserted)
     return res;
   }
 }

@@ -8,7 +8,7 @@ export interface IUserService<T extends Document> {
   findOne: (userDetailQuery: UserDetailQueryArg) => Promise<UserDto>;
   add: (user: CreateUserInput) => Promise<UserDto>;
   create: (user: CreateUserInput) => Promise<UserDto>;
-  find: () => Promise<UserDto>;
+  find: (options?: any) => Promise<UserDto>;
   update: () => any;
   delete: () => any;
   save: () => any;

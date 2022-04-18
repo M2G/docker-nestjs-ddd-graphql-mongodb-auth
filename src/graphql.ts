@@ -8,13 +8,13 @@
 /* tslint:disable */
 /* eslint-disable */
 export class CreateUserInput {
-    _id: string;
+    _id?: Nullable<string>;
     first_name: string;
     last_name: string;
     email: string;
     password: string;
     created_at: string;
-    modified_at: string;
+    modified_at?: Nullable<string>;
 }
 
 export class User {

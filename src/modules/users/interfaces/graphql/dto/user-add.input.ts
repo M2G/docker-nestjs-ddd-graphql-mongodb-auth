@@ -23,8 +23,4 @@ export class CreateUserInput {
   @Field()
   @IsString()
   created_at!: string;
-
-  @Field()
-  @IsString()
-  modified_at!: string;
 }
