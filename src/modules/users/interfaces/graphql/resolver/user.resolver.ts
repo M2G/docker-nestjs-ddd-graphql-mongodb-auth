@@ -1,10 +1,9 @@
 /*eslint-disable*/
 import { Inject } from '@nestjs/common';
-import {
- Args, Mutation, Resolver, Query,
-} from '@nestjs/graphql';
-import { UserService } from "modules/users/application/services/impl/user.service";
+import { Args, Mutation, Resolver, Query } from '@nestjs/graphql';
+import { UserService } from 'modules/users/application/services/impl/user.service';
 import { CreateUserInput } from 'modules/users/interfaces/graphql/dto/user-add.input';
+import { UserDetailQueryArg } from 'modules/users/interfaces/graphql/dto/user-detail.args';
 import { User } from 'modules/users/infrastructure/mongoose/user.schema';
 import { IUserService } from 'modules/users/application/services/users';
 
@@ -15,14 +14,20 @@ export class UserResolver {
     @Inject(UserService) private readonly userService: IUserService<any>,
   ) {}
 
-   @Mutation(() => User)
+  @Mutation(() => User)
   async createUser(@Args('input') input: CreateUserInput) {
-    return this.userService.create(input);
+    return await this.userService.create(input);
   }
 
   @Query(() => [User])
   async users() {
-    console.log('users')
-    return this.userService.find();
+    return await this.userService.find({});
+  }
+
+  @Query(() => [User])
+  async getUser(@Args() userDetailQuery: UserDetailQueryArg) {
+    console.log('userDetailQuery', userDetailQuery);
+    return await this.userService.findOne(userDetailQuery);
   }
 }
+

@@ -3,20 +3,18 @@ import type { FilterQuery, Query } from 'mongoose';
 import { Injectable, Inject } from '@nestjs/common';
 import type { User } from 'modules/users/infrastructure/mongoose/user.schema';
 import { UserRepositoryImpl } from 'modules/users/infrastructure/repository/user.repository';
-// import { UserAssembler } from 'modules/users/application/assembler/user.assembler';
-// import { UserMapperService } from 'modules/users/infrastructure/mapper/user.mapper';
+import { UserAssembler } from 'modules/users/application/assembler/user.assembler';
+import { UserMapperService } from 'modules/users/infrastructure/mapper/user.mapper';
 import type { IUserService } from 'modules/users/application/services/users';
 
 @Injectable()
 export class UserService implements IUserService<any> {
 
-  /*
   @Inject()
   private readonly userMapper!: UserMapperService;
 
   @Inject()
   private readonly userAssembler!: UserAssembler;
-  */
 
   @Inject()
   private readonly userRepository!: UserRepositoryImpl;
@@ -55,11 +53,17 @@ export class UserService implements IUserService<any> {
   }
 
   async findOne(query: FilterQuery<User>): Promise<User[]> {
-    return this.userRepository.findOne(query);
+    const userDomainEntity = await this.userRepository.findOne(query);
+
+    console.log('findOne userDomainEntity', userDomainEntity)
+
+    return await this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async find(): Promise<User[]> {
-    console.log('gsdgdsgsdgsdgdsgsgsdgsgds');
-    return this.userRepository.find();
+  async find(options?: any): Promise<User[]> {
+    console.log('UserService');
+    const userDomainEntity = await this.userRepository.find(options);
+
+    return userDomainEntity?.map(async (user :User) => await this.userAssembler.applyDomainToDto(user));
   }
 }

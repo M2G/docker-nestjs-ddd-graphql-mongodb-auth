@@ -11,12 +11,12 @@ export abstract class BaseMapperService extends RepositoryBase<User> {
   }
 
   async findOne(id: number): Promise<User> {
-    return this._repo.findOne(id);
+    return this._repo.findOne(id).lean();
   }
 
   async find(options?: any): Promise<User[]> {
-    console.log('--------------------- find')
-    return this._repo.find(options);
+    console.log('_repo find');
+    return this._repo.find(options).lean();
   }
 
   async delete(id: number): Promise<boolean> {

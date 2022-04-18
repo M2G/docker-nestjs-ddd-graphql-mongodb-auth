@@ -29,6 +29,8 @@ export class User {
 
 export abstract class IQuery {
     abstract users(): User[] | Promise<User[]>;
+
+    abstract getUser(id: string): User | Promise<User>;
 }
 
 export abstract class IMutation {

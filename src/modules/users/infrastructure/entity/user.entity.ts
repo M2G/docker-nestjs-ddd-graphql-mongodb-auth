@@ -22,5 +22,5 @@ export class UserEntity {
   created_at!: string;
 
   @Prop({ type: String })
-  modified_at!: string;
+  modified_at!: boolean;
 }

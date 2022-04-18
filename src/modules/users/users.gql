@@ -16,6 +16,10 @@ type Query {
   users: [User!]!
 }
 
+type Query {
+  getUser(id: String!): User!
+}
+
 type Mutation {
   createUser(input: CreateUserInput!): User!
 }
