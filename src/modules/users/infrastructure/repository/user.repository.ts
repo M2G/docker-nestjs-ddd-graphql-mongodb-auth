@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { UserConverter } from 'modules/users/infrastructure/converter/user.converter';
-import type { UserRepository } from 'modules/users/domain/aggregate/repository/user.repository';
+import type UserRepository from 'modules/users/domain/aggregate/repository/user.repository';
 import type { User } from 'modules/users/domain/aggregate/user';
 import { UserMapperService } from 'modules/users/infrastructure/mapper/user.mapper';
 import type { UserEntity } from 'modules/users/infrastructure/entity/user.entity';
