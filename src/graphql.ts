@@ -18,13 +18,13 @@ export class CreateUserInput {
 }
 
 export class User {
-    _id: string;
+    _id?: Nullable<string>;
     first_name: string;
     last_name: string;
     email: string;
     password: string;
     created_at: string;
-    modified_at: string;
+    modified_at?: Nullable<string>;
 }
 
 export abstract class IQuery {
@@ -35,6 +35,8 @@ export abstract class IQuery {
 
 export abstract class IMutation {
     abstract createUser(input: CreateUserInput): User | Promise<User>;
+
+    abstract deleteItem(id: string): User | Promise<User>;
 }
 
 type Nullable<T> = T | null;

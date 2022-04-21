@@ -3,13 +3,13 @@
 # ------------------------------------------------------
 
 type User {
-  _id: String!
+  _id: String
   first_name: String!
   last_name: String!
   email: String!
   password: String!
   created_at: String!
-  modified_at: String!
+  modified_at: String
 }
 
 type Query {
@@ -22,6 +22,10 @@ type Query {
 
 type Mutation {
   createUser(input: CreateUserInput!): User!
+}
+
+type Mutation {
+  deleteItem(id: String!): User!
 }
 
 input CreateUserInput {

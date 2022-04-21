@@ -1,9 +1,10 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import type { Schema as MongooseSchema } from 'mongoose';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserDto {
-  @Field((type) => Int)
-  _id!: string;
+  @Field()
+  readonly _id!: MongooseSchema.Types.ObjectId;
 
   @Field()
   readonly first_name!: string;

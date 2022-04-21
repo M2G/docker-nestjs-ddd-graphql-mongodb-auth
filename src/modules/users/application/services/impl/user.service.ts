@@ -41,15 +41,18 @@ export class UserService implements IUserService<any> {
    */
 
   async update(id: Query<User, any>, input: Query<User, any>): Promise<User> {
-    await await this.userRepository.update(id, input);
+    return await this.userRepository.update(id, input);
   }
 
   async delete(id: Query<User, any>): Promise<User> {
-    await await this.userRepository.delete(id);
+    console.log('UserService delete', id);
+    return await this.userRepository.delete(id);
   }
 
   async create(input: Query<User, any>): Promise<User> {
-    return this.userRepository.save(input);
+    const userDomainEntity = await this.userRepository.save(input);
+
+    return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
   async findOne(query: FilterQuery<User>): Promise<User[]> {
@@ -57,13 +60,13 @@ export class UserService implements IUserService<any> {
 
     console.log('findOne userDomainEntity', userDomainEntity)
 
-    return await this.userAssembler.applyDomainToDto(userDomainEntity);
+    return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
   async find(options?: any): Promise<User[]> {
     console.log('UserService');
     const userDomainEntity = await this.userRepository.find(options);
 
-    return userDomainEntity?.map(async (user :User) => await this.userAssembler.applyDomainToDto(user));
+    return userDomainEntity?.map(async (user :User) => this.userAssembler.applyDomainToDto(user));
   }
 }

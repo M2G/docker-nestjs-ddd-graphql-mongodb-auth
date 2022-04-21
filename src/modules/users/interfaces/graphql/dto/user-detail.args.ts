@@ -7,5 +7,5 @@ import { Min } from 'class-validator';
 export class UserDetailQueryArg {
   @Field()
   @Min(1)
-  _id!: number;
+  _id!: string;
 }

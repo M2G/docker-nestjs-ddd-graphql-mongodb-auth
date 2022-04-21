@@ -9,24 +9,26 @@ export abstract class BaseMapperService<T extends Document> implements IRead<T>,
     this._model = schemaModel;
   }
 
-  findOne(id: number): User {
-    return this._model.findOne(id).lean();
+  async findOne(id: number): Promise<User> {
+    return await this._model.findOne(id).lean();
   }
 
-  find(options?: any): User[] {
+  async find(options?: any): Promise<User[]> {
     console.log('_repo find');
-    return this._model.find(options).lean();
+    return await this._model.find(options).lean();
   }
 
-  delete(id: number): boolean {
-    return this._model.findByIdAndDelete(id);
+  async create(t: User): Promise<User> {
+    return await this._model.create(t);
   }
 
-  create(t: User): User {
-    return this._model.create(t);
+  async update(id: number, t: User): Promise<User> {
+    return await this._model.findByIdAndUpdate({ id } as any, { ...t }, { new: true, upsert: true });
   }
 
-  update(id: number, t: User): User {
-    return this._model.findByIdAndUpdate({ id } as any, { ...t }, { new: true, upsert: true });
+  async delete(id: number): boolean {
+    console.log('findByIdAndDelete', id);
+    return await this._model.findByIdAndDelete({ _id: id.id });
   }
 }
+

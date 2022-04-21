@@ -20,15 +20,22 @@ export class UserResolver {
     return await this.userService.create(input);
   }
 
-  @Query(() => [User])
+  @Query(() => User)
   async users() {
     return await this.userService.find({});
   }
 
-  @Query(() => [User])
+  @Query(() => User)
   async getUser(@Args() userDetailQuery: UserDetailQueryArg) {
     console.log('userDetailQuery', userDetailQuery);
     return await this.userService.findOne(userDetailQuery);
   }
+
+  @Mutation(returns  => User)
+  async deleteItem(@Args() userDetailQuery: UserDetailQueryArg) {
+    console.log('deleteItem', userDetailQuery);
+    return await this.userService.delete(userDetailQuery);
+  }
+
 }
 

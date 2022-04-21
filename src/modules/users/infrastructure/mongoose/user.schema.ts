@@ -3,6 +3,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 // import { IsString, IsEmail } from 'class-validator';
 import { Document, Schema } from 'mongoose';
+import { Schema as MongooseSchema } from 'mongoose';
 
 const emailMatch = [
   /([a-z0-9_\-\.])+@([a-z0-9_\-\.])+\.([a-z0-9])+/i,
@@ -68,7 +69,7 @@ export const UserSchema = new Schema({
 @ObjectType()
 export class User extends Document {
   @Field()
-  _id!: string;
+  _id!: MongooseSchema.Types.ObjectId;
 
   @Field()
   first_name!: string;

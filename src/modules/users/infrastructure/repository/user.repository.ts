@@ -10,8 +10,8 @@ export class UserRepositoryImpl implements UserRepository {
   @Inject()
   private readonly userMapper!: UserMapperService;
 
-  async findOne(id: number): Promise<User> {
-    const userEntity: User = await this.userMapper.findOne(id);
+  async findOne(_id: User): Promise<User> {
+    const userEntity: UserEntity = await this.userMapper.findOne(_id);
     return UserConverter.toDomain(userEntity);
   }
 
@@ -22,15 +22,17 @@ export class UserRepositoryImpl implements UserRepository {
 
   async update() {}
 
-  async delete() {}
+  async delete(_id: User): Promise<User> {
+    const userEntity: UserEntity[] = await this.userMapper.delete(_id);
+
+    console.log('delete delete delete', userEntity);
+    return userEntity;
+  }
 
   async save(user: User): Promise<User> {
     const userEntity = UserConverter.toEntity(user);
-    console.log('userEntity userEntity', userEntity)
     const inserted = await this.userMapper.create(userEntity);
-    console.log('inserted inserted', inserted)
-    const res = UserConverter.toDomain(inserted);
-    console.log('inserted res', inserted)
+    const { _doc: res }: any = UserConverter.toDomain(inserted);
     return res;
   }
 }
