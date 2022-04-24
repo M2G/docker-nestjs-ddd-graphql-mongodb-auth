@@ -14,7 +14,6 @@ export abstract class BaseMapperService<T extends Document> implements IRead<T>,
   }
 
   async find(options?: any): Promise<User[]> {
-    console.log('_repo find');
     return await this._model.find(options).lean();
   }
 
@@ -22,12 +21,12 @@ export abstract class BaseMapperService<T extends Document> implements IRead<T>,
     return await this._model.create(t);
   }
 
-  async update(id: number, t: User): Promise<User> {
+  async update(id: User, t: User): Promise<User> {
     return await this._model.findByIdAndUpdate({ id } as any, { ...t }, { new: true, upsert: true });
   }
 
-  async delete(id: number): Promise<User> {
+  async delete(id: User): Promise<User> {
     console.log('findByIdAndDelete', id);
-    return await this._model.findByIdAndDelete({ _id: id.id });
+    return await this._model.findByIdAndDelete({ _id: { ...id } });
   }
 }
