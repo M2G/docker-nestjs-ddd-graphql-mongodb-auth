@@ -28,6 +28,10 @@ type Mutation {
   deleteItem(id: String!): User!
 }
 
+type Mutation {
+  updateUser(id: String!, input: CreateUserInput!): User!
+}
+
 input CreateUserInput {
   _id: String
   first_name: String!
