@@ -26,9 +26,8 @@ export abstract class BaseMapperService<T extends Document> implements IRead<T>,
     return await this._model.findByIdAndUpdate({ id } as any, { ...t }, { new: true, upsert: true });
   }
 
-  async delete(id: number): boolean {
+  async delete(id: number): Promise<User> {
     console.log('findByIdAndDelete', id);
     return await this._model.findByIdAndDelete({ _id: id.id });
   }
 }
-

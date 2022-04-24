@@ -9,6 +9,6 @@ export interface IUserService<T extends Document> {
   add: (user: CreateUserInput) => Promise<UserDto>;
   create: (user: CreateUserInput) => Promise<UserDto>;
   find: (options?: any) => Promise<UserDto>;
-  update: () => any;
+  update: (userDetailQuery: UserDetailQueryArg, user: CreateUserInput) => Promise<UserDto>;
   delete: (userDetailQuery: UserDetailQueryArg) => number;
 }

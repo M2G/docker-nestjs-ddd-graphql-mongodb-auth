@@ -20,6 +20,16 @@ export class UserResolver {
     return await this.userService.create(input);
   }
 
+  @Mutation(() => User)
+  async updateUser(
+    @Args('input') input: CreateUserInput,
+    @Args('_id') _id: UserDetailQueryArg,
+  ) {
+    console.log('input input', input)
+    console.log('_id _id', _id)
+    return await this.userService.update(_id, input);
+  }
+
   @Query(() => User)
   async users() {
     return await this.userService.find({});

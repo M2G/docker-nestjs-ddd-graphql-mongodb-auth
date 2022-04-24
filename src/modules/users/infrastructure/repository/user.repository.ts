@@ -20,17 +20,20 @@ export class UserRepositoryImpl implements UserRepository {
     return userEntity?.map((user: UserEntity) => UserConverter.toDomain(user));
   }
 
-  async update() {}
+  async update(_id: User, user: User) {
+    console.log('update _id', _id);
+    console.log('update user', user);
+  }
 
   async delete(_id: User): Promise<User> {
-    const userEntity: UserEntity[] = await this.userMapper.delete(_id);
+    const user: User = await this.userMapper.delete(_id);
 
-    console.log('delete delete delete', userEntity);
-    return userEntity;
+    console.log('delete delete delete', user);
+    return UserConverter.toDomain(user);
   }
 
   async save(user: User): Promise<User> {
-    const userEntity = UserConverter.toEntity(user);
+    const userEntity: UserEntity = UserConverter.toEntity(user);
     const inserted = await this.userMapper.create(userEntity);
     const { _doc: res }: any = UserConverter.toDomain(inserted);
     return res;
