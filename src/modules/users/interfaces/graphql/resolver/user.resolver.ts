@@ -9,7 +9,6 @@ import { IUserService } from 'modules/users/application/services/users';
 
 @Resolver(() => User)
 export class UserResolver {
-  //constructor(private readonly userService: UserService) {}
   constructor(
     @Inject(UserService) private readonly userService: IUserService<any>,
   ) {}
@@ -23,11 +22,11 @@ export class UserResolver {
   @Mutation(() => User)
   async updateUser(
     @Args('input') input: CreateUserInput,
-    @Args('_id') _id: UserDetailQueryArg,
+    @Args('id') id: UserDetailQueryArg,
   ) {
     console.log('input input', input)
-    console.log('_id _id', _id)
-    return await this.userService.update(_id, input);
+    console.log('_id _id', id)
+   // return await this.userService.update(_id, input);
   }
 
   @Query(() => User)

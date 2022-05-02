@@ -9,8 +9,8 @@ export abstract class BaseMapperService<T extends Document> implements IRead<T>,
     this._model = schemaModel;
   }
 
-  async findOne(id: number): Promise<User> {
-    return await this._model.findOne(id).lean();
+  async findOne(user: User): Promise<User> {
+    return await this._model.findOne(user).lean();
   }
 
   async find(options?: any): Promise<User[]> {

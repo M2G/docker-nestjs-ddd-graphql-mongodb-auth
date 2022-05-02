@@ -10,8 +10,8 @@ export class UserRepositoryImpl implements UserRepository {
   @Inject()
   private readonly userMapper!: UserMapperService;
 
-  async findOne(_id: User): Promise<User> {
-    const userEntity: UserEntity = await this.userMapper.findOne(_id);
+  async findOne(user: User): Promise<User> {
+    const userEntity: UserEntity = await this.userMapper.findOne(user);
     return UserConverter.toDomain(userEntity);
   }
 
