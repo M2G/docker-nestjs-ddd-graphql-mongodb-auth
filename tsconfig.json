@@ -37,10 +37,10 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "auth/*": ["./auth/*"],
       "common/*": ["./common/*"],
-      "config/*": ["./config/*"],
       "modules/*": ["./modules/*"],
-      "database/*": ["./database/*"]
+      "database/*": ["./database/*"],
     }
   },
   "include": ["src/**/*"],
@@ -50,8 +50,7 @@
     "node_modules",
     "dist",
     "build",
-    "node_modules",
-    "config"
+    "node_modules"
   ],
   "compileOnSave": false,
   "buildOnSave": false

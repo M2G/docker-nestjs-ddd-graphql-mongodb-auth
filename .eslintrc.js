@@ -28,7 +28,7 @@ module.exports = {
     sourceType: 'module',
     extraFileExtensions: [".scss"]
   },
-  plugins: ["@typescript-eslint", "jest", "prettier"],
+  plugins: ["@typescript-eslint", "jest", "prettier", "import", "unused-imports"],
   rules: {
     "no-underscore-dangle": 1,
     "no-return-assign": 0,
