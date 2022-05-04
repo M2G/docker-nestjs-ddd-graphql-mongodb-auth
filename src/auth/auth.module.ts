@@ -20,9 +20,12 @@ import { JwtStrategy } from './jwt.strategy';
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({ secret: 'secret' }),
   ],
-  providers: [AuthResolver,
-AuthService,
-JwtStrategy,
-GqlAuthGuard],
+  providers: [
+    AuthResolver,
+    AuthService,
+    JwtStrategy,
+    GqlAuthGuard,
+  ],
 })
+
 export class AuthModule {}

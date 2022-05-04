@@ -1,4 +1,4 @@
-import type { Schema as MongooseSchema } from 'mongoose';
+import { Schema as MongooseSchema } from 'mongoose';
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()

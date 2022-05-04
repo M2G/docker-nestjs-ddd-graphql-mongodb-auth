@@ -66,6 +66,7 @@ export const UserSchema = new Schema({
   }
 });
 
+
 @ObjectType()
 export class User extends Document {
   @Field()

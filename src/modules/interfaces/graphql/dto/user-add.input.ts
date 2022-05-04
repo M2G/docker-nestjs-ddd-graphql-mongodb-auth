@@ -1,4 +1,3 @@
-// src/user/user.input.ts
 import { IsString, IsEmail } from 'class-validator';
 import { Field, InputType } from '@nestjs/graphql';
 

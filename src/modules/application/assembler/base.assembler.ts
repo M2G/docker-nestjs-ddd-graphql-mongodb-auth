@@ -1,6 +1,6 @@
 export interface BaseAssembler<Entity, DomainEntity, DTO> {
 
-    applyEntityToDto: (entity: Entity) => Promise<DTO>;
+    applyEntityToDto: (entity: Entity) => DTO;
 
-    applyDomainToDto: (domainEntity: DomainEntity) => Promise<DTO>;
+    applyDomainToDto: (domainEntity: DomainEntity) => DTO;
 }

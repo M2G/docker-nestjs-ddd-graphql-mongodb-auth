@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@nestjs/common';
-import type { User } from 'modules/infrastructure/mongoose/user.schema';
 import { UserRepositoryImpl } from 'modules/infrastructure/repository/user.repository';
 import { UserAssembler } from 'modules/application/assembler/user.assembler';
 import type { IUserService } from 'modules/application/services/users';
+import type { UserDto } from 'modules/interfaces/graphql/types/user';
 
 @Injectable()
 export class UserService implements IUserService<any> {
@@ -12,7 +12,7 @@ export class UserService implements IUserService<any> {
   @Inject()
   private readonly userRepository!: UserRepositoryImpl;
 
-  async update(id: any, input: any): Promise<User> {
+  async update(id: any, input: any): Promise<UserDto[]> {
     return this.userRepository.update(id, input);
   }
 
@@ -21,13 +21,13 @@ export class UserService implements IUserService<any> {
     return this.userRepository.delete(user);
   }
 
-  async create(input: any): Promise<User> {
+  async create(input: any): Promise<UserDto> {
     const userDomainEntity = await this.userRepository.save(input);
 
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async findOne(query: any): Promise<User[]> {
+  async findOne(query: any): Promise<UserDto> {
     const userDomainEntity = await this.userRepository.findOne(query);
 
     console.log('findOne userDomainEntity', userDomainEntity);
@@ -35,10 +35,11 @@ export class UserService implements IUserService<any> {
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async find(options?: any): Promise<User[]> {
+  async find(options?: any): Promise<UserDto[]> {
     console.log('UserService');
     const userDomainEntity = await this.userRepository.find(options);
 
-    return userDomainEntity?.map(async (user: User) => this.userAssembler.applyDomainToDto(user));
+    return userDomainEntity?.map(async (user: any) =>
+      this.userAssembler.applyDomainToDto(user));
   }
 }

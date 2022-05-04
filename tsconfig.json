@@ -37,6 +37,7 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "config/*": ["./config/*"],
       "auth/*": ["./auth/*"],
       "common/*": ["./common/*"],
       "modules/*": ["./modules/*"],

@@ -7,7 +7,7 @@ export class GraphqlService implements GqlOptionsFactory {
     async createGqlOptions(): Promise<GqlModuleOptions> {
         return {
          // autoSchemaFile: 'schema.gql',
-          typePaths: ['./**/*.gql'],
+          typePaths: ['./**/*.graphql'],
           definitions: {
             path: join(process.cwd(), 'src/graphql.ts'),
             outputAs: 'class',

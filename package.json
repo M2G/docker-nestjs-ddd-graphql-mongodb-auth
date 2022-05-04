@@ -4,6 +4,7 @@
   "description": "A simple API using Docker, NestJS, GraphQL, Typescript, Redis and MongoDB (with Domain Driven Design)",
   "main": "index.ts",
   "_moduleAliases": {
+    "config": "./build/config",
     "auth": "./build/auth",
     "common": "./build/common",
     "modules": "./build/modules",
