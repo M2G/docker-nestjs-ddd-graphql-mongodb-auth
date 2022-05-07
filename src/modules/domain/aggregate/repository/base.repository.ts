@@ -8,19 +8,9 @@ import type {
 
 interface IRead<T extends Document> {
   findById: (id?: Types.ObjectId, callback?: (error: any, result?: Model<T>) => void) => void;
-  findOne: ((conditions: any, projection: any,
-             callback?: (err: any, res: Model<T> | null) => void) => Query<T | null, T>)
-    & ((conditions: any, projection: any, options: any,
-        callback?: (err: any, res: Model<T> | null) => void) => Query<T | null, T>)
-    & ((conditions?: any,
-        callback?: (err: any, res: Model<T> | null) => void) => Query<T | null, T>);
-
-  find: ((callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>)
-    & ((conditions: any, callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>)
-    & ((conditions: any, projection?: any | null,
-        callback?: (err: any, res?: T[]) => void) => Query<T[], T>)
-    & ((conditions: any, projection?: any | null, options?: any | null,
-        callback?: (err: any, res?: Model<T>[]) => void) => Query<T[], T>);
+  findOne: (cond?: Object, callback?: (err: any, res: T) => void) => Query<T | null, T>;
+  find: (cond: Object, fields: Object, options: Object, callback?: (err: any, res: T[]) => void) =>
+    Query<T[], T>;
 }
 
 interface IWrite<T extends Document> {
