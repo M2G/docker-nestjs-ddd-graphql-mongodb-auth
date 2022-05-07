@@ -11,12 +11,12 @@ export class UserRepositoryImpl implements UserRepository {
   private readonly userMapper!: UserMapperService;
 
   async findOne(user: User): Promise<User> {
-    const userEntity: UserEntity = await this.userMapper.findOne(user);
+    const userEntity: User = await this.userMapper.findOne(user);
     return UserConverter.toDomain(userEntity);
   }
 
   async find(options?: any): Promise<User[]> {
-    const userEntity: UserEntity[] = await this.userMapper.find(options);
+    const userEntity: User[] = await this.userMapper.find(options);
     return userEntity?.map((user: UserEntity) => UserConverter.toDomain(user));
   }
 

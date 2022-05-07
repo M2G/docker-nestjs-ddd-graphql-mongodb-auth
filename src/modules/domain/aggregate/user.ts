@@ -1,5 +1,7 @@
+import type { Schema as MongooseSchema } from 'mongoose';
+
 export class User {
-    _id!: string;
+    _id!: MongooseSchema.Types.ObjectId;
 
    first_name!: string;
 

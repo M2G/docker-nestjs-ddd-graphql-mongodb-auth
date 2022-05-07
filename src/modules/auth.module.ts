@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { GqlAuthGuard } from 'common/guards/gql-auth.guard';
-import { JwtStrategy } from 'auth/jwt.strategy';
+import { JwtStrategy } from 'auth/shared/jwt.strategy';
 import { UsersModule } from './users.module';
 import { ApplicationModule } from './application/application.module';
 // import { SECRET_KEY } from '../../constant';

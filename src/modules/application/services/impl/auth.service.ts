@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
-import {UserService} from "modules/application/services/impl/user.service";
+import { UserService } from "modules/application/services/impl/user.service";
 import type { User } from '../../../../graphql';
 // import { UserService } from '../user/user.service';
 

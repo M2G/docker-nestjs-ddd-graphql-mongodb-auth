@@ -4,7 +4,7 @@ import { ApolloDriver } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { GraphqlService } from 'config/graphql/graphql.service';
 import { UsersModule } from "modules/users.module";
-import { AuthModule } from "auth/auth.module";
+import { AuthModule } from "modules/auth.module";
 import { AppService } from './app.service';
 import { AppController } from './app.controller';
 

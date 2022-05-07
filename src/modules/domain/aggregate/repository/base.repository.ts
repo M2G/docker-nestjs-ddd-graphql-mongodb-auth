@@ -36,7 +36,7 @@ interface IWrite<T extends Document> {
                       callback?: (error: any, result: Model<T> | null) => any) => any;
 }
 
-export {
+export type {
   IRead,
   IWrite,
 };
