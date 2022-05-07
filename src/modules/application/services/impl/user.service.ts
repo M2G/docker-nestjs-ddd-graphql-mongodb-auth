@@ -12,13 +12,15 @@ export class UserService implements IUserService<any> {
   @Inject()
   private readonly userRepository!: UserRepositoryImpl;
 
-  async update(id: any, input: any): Promise<UserDto[]> {
-    return this.userRepository.update(id, input);
+  async update(id: any, input: any): Promise<UserDto> {
+    const userDomainEntity = await this.userRepository.update(id, input);
+    return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
   async delete(user: any): Promise<any> {
     console.log('UserService delete', user);
-    return this.userRepository.delete(user);
+    const userDomainEntity = await this.userRepository.delete(user);
+    return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
   async create(input: any): Promise<UserDto> {
@@ -39,7 +41,6 @@ export class UserService implements IUserService<any> {
     console.log('UserService');
     const userDomainEntity = await this.userRepository.find(options);
 
-    return userDomainEntity?.map(async (user: any) =>
-      this.userAssembler.applyDomainToDto(user));
+    return userDomainEntity?.map(async (user: UserDto) => this.userAssembler.applyDomainToDto(user));
   }
 }

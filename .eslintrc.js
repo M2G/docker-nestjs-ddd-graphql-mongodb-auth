@@ -46,6 +46,7 @@ module.exports = {
     "init-declarations": 0,
     "func-style": 0,
     "camelcase": 1,
+    "class-methods-use-this": 1,
 
     "max-statements": 0,
     "max-lines": 0,

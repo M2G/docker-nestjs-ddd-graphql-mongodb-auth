@@ -23,6 +23,7 @@ export class UserRepositoryImpl implements UserRepository {
   async update(_id: User, user: User) {
     console.log('update _id', _id);
     console.log('update user', user);
+    // const userEntity: UserEntity = UserConverter.toEntity({ _id, ...user });
     const userEntity: UserEntity = await this.userMapper.update(_id, user);
     console.log('update userEntity', userEntity);
     return UserConverter.toDomain(userEntity);
