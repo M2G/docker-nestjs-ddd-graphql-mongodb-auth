@@ -4,7 +4,6 @@ import type {
   IRead,
 } from 'modules/domain/aggregate/repository/base.repository';
 import type { User } from 'modules/infrastructure/mongoose/user.schema';
-import {Query} from "mongoose";
 
 export abstract class BaseMapperService<T extends Document>
   implements IRead<T>, IWrite<T> {
@@ -14,7 +13,7 @@ export abstract class BaseMapperService<T extends Document>
     this._model = schemaModel;
   }
 
-  async findOne(user: User): Promise<User> {
+  findOne(user: User): User {
     return this._model.findOne(user).lean();
   }
 
@@ -22,7 +21,7 @@ export abstract class BaseMapperService<T extends Document>
     new?: boolean; upsert?: boolean; runValidators?: boolean;
     setDefaultsOnInsert?: boolean; sort?: any; select?: any;
     rawResult?: any; strict?: any;
-  }): Query<T[], T> {
+  }): User[] {
     return this._model.find(options).lean();
   }
 

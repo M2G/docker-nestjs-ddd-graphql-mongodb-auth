@@ -10,33 +10,33 @@ export class UserRepositoryImpl implements UserRepository {
   @Inject()
   private readonly userMapper!: UserMapperService;
 
-  async findOne(user: User): Promise<User> {
-    const userEntity: User = await this.userMapper.findOne(user);
+  findOne(user: User): User {
+    const userEntity: User = this.userMapper.findOne(user);
     return UserConverter.toDomain(userEntity);
   }
 
-  async find(options?: any): Promise<User[]> {
-    const userEntity: User[] = await this.userMapper.find(options);
+  find(options?: any): User[] {
+    const userEntity: User[] = this.userMapper.find(options);
     return userEntity?.map((user: UserEntity) => UserConverter.toDomain(user));
   }
 
-  async update(_id: User, user: User) {
+  update(_id: User, user: User) {
     console.log('update _id', _id);
     console.log('update user', user);
     // const userEntity: UserEntity = UserConverter.toEntity({ _id, ...user });
-    const userEntity: UserEntity = await this.userMapper.update(_id, user);
+    const userEntity: UserEntity = this.userMapper.update(_id, user);
     console.log('update userEntity', userEntity);
     return UserConverter.toDomain(userEntity);
   }
 
-  async delete(_id: User): Promise<User> {
-    const user: User = await this.userMapper.delete(_id);
+  delete(_id: User): User {
+    const user: User = this.userMapper.delete(_id);
     return UserConverter.toDomain(user);
   }
 
-  async save(user: User): Promise<User> {
+  save(user: User): User {
     const userEntity: UserEntity = UserConverter.toEntity(user);
-    const inserted = await this.userMapper.create(userEntity);
+    const inserted = this.userMapper.create(userEntity);
     const { _doc: res }: any = UserConverter.toDomain(inserted);
     return res;
   }
