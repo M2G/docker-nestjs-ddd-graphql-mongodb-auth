@@ -12,35 +12,33 @@ export class UserService implements IUserService<any> {
   @Inject()
   private readonly userRepository!: UserRepositoryImpl;
 
-  async update(id: any, input: any): Promise<UserDto> {
-    const userDomainEntity = await this.userRepository.update(id, input);
+  update(id: any, input: any): UserDto {
+    const userDomainEntity = this.userRepository.update(id, input);
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async delete(user: any): Promise<any> {
+  delete(user: any): any {
     console.log('UserService delete', user);
-    const userDomainEntity = await this.userRepository.delete(user);
+    const userDomainEntity = this.userRepository.delete(user);
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async create(input: any): Promise<UserDto> {
-    const userDomainEntity = await this.userRepository.save(input);
-
+  create(input: any): UserDto {
+    const userDomainEntity = this.userRepository.save(input);
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async findOne(query: any): Promise<UserDto> {
-    const userDomainEntity = await this.userRepository.findOne(query);
+   findOne(query: any): UserDto {
+    const userDomainEntity = this.userRepository.findOne(query);
 
     console.log('findOne userDomainEntity', userDomainEntity);
 
     return this.userAssembler.applyDomainToDto(userDomainEntity);
   }
 
-  async find(options?: any): Promise<UserDto[]> {
+  find(options?: any): UserDto[] {
     console.log('UserService');
-    const userDomainEntity = await this.userRepository.find(options);
-
-    return userDomainEntity?.map(async (user: UserDto) => this.userAssembler.applyDomainToDto(user));
+    const userDomainEntity = this.userRepository.find(options);
+    return userDomainEntity?.map((user: UserDto) => this.userAssembler.applyDomainToDto(user));
   }
 }

@@ -16,13 +16,13 @@ export class UserResolver {
   ) {}
 
   @Mutation(() => User)
-  async createUser(@Args('input') input: CreateUserInput) {
+  createUser(@Args('input') input: CreateUserInput) {
     console.log('input input', input)
-    return await this.userService.create(input);
+    return this.userService.create(input);
   }
 
   @Mutation(() => User)
-  async updateUser(
+  updateUser(
     @Args('input') input: CreateUserInput,
     @Args('id') id: UserDetailQueryArg,
   ) {
@@ -33,19 +33,19 @@ export class UserResolver {
 
   @Query(() => User)
   async users() {
-    return await this.userService.find({});
+    return this.userService.find({});
   }
 
   @Query(() => User)
-  async getUser(@Args() userDetailQuery: UserDetailQueryArg) {
+  getUser(@Args() userDetailQuery: UserDetailQueryArg) {
     console.log('userDetailQuery', userDetailQuery);
-    return await this.userService.findOne(userDetailQuery);
+    return this.userService.findOne(userDetailQuery);
   }
 
   @Mutation(returns  => User)
-  async deleteItem(@Args() userDetailQuery: UserDetailQueryArg) {
+  deleteItem(@Args() userDetailQuery: UserDetailQueryArg) {
     console.log('deleteItem', userDetailQuery);
-    return await this.userService.delete(userDetailQuery);
+    return this.userService.delete(userDetailQuery);
   }
 
 }

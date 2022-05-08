@@ -30,7 +30,7 @@ export class UserRepositoryImpl implements UserRepository {
   }
 
   delete(_id: User): User {
-    const user: User = this.userMapper.delete(_id);
+    const user: User | null = this.userMapper.delete(_id);
     return UserConverter.toDomain(user);
   }
 

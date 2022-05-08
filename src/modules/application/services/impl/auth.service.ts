@@ -2,12 +2,15 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { compare } from 'bcrypt';
 import { UserService } from "modules/application/services/impl/user.service";
-import type { User } from '../../../../graphql';
+import type { User } from 'modules/domain/aggregate/user';
 // import { UserService } from '../user/user.service';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly jwtService: JwtService, private readonly userService: UserService) {}
+  public constructor(
+    private readonly jwtService: JwtService,
+    private readonly userService: UserService,
+) {}
 
   async validateUser(id: string): Promise<User> {
 
