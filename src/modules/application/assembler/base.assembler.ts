@@ -1,4 +1,4 @@
-export interface BaseAssembler<Entity, DomainEntity, DTO> {
+export default interface BaseAssembler<Entity, DomainEntity, DTO> {
 
     applyEntityToDto: (entity: Entity) => DTO;
 

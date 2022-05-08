@@ -5,7 +5,7 @@ import type {
 } from 'modules/domain/aggregate/repository/base.repository';
 import type { User } from 'modules/infrastructure/mongoose/user.schema';
 
-export abstract class BaseMapperService<T extends Document>
+export default abstract class BaseMapperService<T extends Document>
   implements IRead<T>, IWrite<T> {
   private readonly _model: Model<Document>;
 

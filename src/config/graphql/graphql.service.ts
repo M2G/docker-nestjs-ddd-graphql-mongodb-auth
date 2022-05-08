@@ -3,7 +3,7 @@ import { GqlModuleOptions, GqlOptionsFactory } from '@nestjs/graphql';
 import { join } from 'path';
 
 @Injectable()
-export class GraphqlService implements GqlOptionsFactory {
+export default class GraphqlService implements GqlOptionsFactory {
     async createGqlOptions(): Promise<GqlModuleOptions> {
         return {
          // autoSchemaFile: 'schema.gql',

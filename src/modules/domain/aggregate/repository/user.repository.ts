@@ -1,4 +1,4 @@
-import type { User } from '../user';
+import type User from '../user';
 
 interface UserRepository {
   find: (id: string) => Promise<User>;

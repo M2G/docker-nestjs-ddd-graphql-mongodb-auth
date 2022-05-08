@@ -2,7 +2,7 @@ import { Schema as MongooseSchema } from 'mongoose';
 import { Prop, Schema } from '@nestjs/mongoose';
 
 @Schema()
-export class UserEntity {
+export default class UserEntity {
   @Prop({ type: String })
   _id!: MongooseSchema.Types.ObjectId;
 

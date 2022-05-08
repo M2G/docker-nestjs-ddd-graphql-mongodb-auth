@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { DatabaseModule } from 'database/database.module';
-import { UserRepositoryImpl } from 'modules/infrastructure/repository/user.repository';
-import { userProviders } from 'modules/user.providers';
-import { UserMapperService } from './mapper/user.mapper';
+import DatabaseModule from 'database/database.module';
+import UserRepositoryImpl from 'modules/infrastructure/repository/user.repository';
+import userProviders from 'modules/user.providers';
+import UserMapperService from './mapper/user.mapper';
 
 @Module({
   exports: [
@@ -19,4 +19,4 @@ import { UserMapperService } from './mapper/user.mapper';
     ...userProviders,
   ],
 })
-export class InfrastructureModule {}
+export default class InfrastructureModule {}

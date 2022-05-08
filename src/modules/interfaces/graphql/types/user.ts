@@ -2,7 +2,7 @@ import { Schema as MongooseSchema } from 'mongoose';
 import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
-export class UserDto {
+export default class UserDto {
   @Field()
   readonly _id!: MongooseSchema.Types.ObjectId;
 
