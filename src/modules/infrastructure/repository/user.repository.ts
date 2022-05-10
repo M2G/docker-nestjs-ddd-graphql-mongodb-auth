@@ -15,7 +15,11 @@ export default class UserRepositoryImpl implements UserRepository {
     return UserConverter.toDomain(userEntity);
   }
 
-  find(options?: any): User[] {
+  find(options?: {
+    new?: boolean; upsert?: boolean; runValidators?: boolean;
+    setDefaultsOnInsert?: boolean; sort?: any; select?: any;
+    rawResult?: any; strict?: any;
+  }): User[] {
     const userEntity: User[] = this.userMapper.find(options);
     return userEntity?.map((user: UserEntity) => UserConverter.toDomain(user));
   }

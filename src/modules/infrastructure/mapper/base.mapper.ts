@@ -1,4 +1,4 @@
-import type { Document, Model } from 'mongoose';
+import type { Document, Model, HydratedDocument } from 'mongoose';
 import type {
   IWrite,
   IRead,
@@ -25,7 +25,7 @@ export default abstract class BaseMapperService<T extends Document>
     return this._model.find(options).lean();
   }
 
-  create(t: User): User {
+  create(t: User): Promise<HydratedDocument<any>> {
     return this._model.create(t);
   }
 
